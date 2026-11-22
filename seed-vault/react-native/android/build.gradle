@@ -27,6 +27,8 @@ dependencies {
   //   ./gradlew :seed-vault-sdk:publishToMavenLocal -PsignAllPublications=false \
   //     -PmavenCentralPublishing=false -x javaDocReleaseGeneration
   api 'com.michaeltchuang.algokit.seedvault:seed-vault-sdk:0.0.4'
+  // Solana Mobile Seed Vault wallet SDK.
+  api 'com.solanamobile:seedvault-wallet-sdk:0.4.0'
 }
 
 // The SDK is built with Kotlin 2.4; the host app compiles with an older compiler.

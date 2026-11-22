@@ -48,3 +48,29 @@ export interface NativeSeedVaultModule extends SeedVaultConstants {
     length: number,
   ): Promise<boolean>;
 }
+
+/** One account of a Solana Mobile Seed Vault seed. `address` is the base58 Ed25519 public key. */
+export interface SolanaSeedVaultAccount {
+  id: number;
+  address: string;
+  name: string | null;
+  derivationPath: string;
+}
+
+export interface SolanaSeedVaultSeed {
+  authToken: number;
+  name: string;
+  accounts: SolanaSeedVaultAccount[];
+}
+
+/** Native surface of the Solana Seed Vault module; binary values are base64 strings. */
+export interface NativeSolanaSeedVaultModule {
+  PERMISSION: string;
+  PURPOSE_SIGN_SOLANA_TRANSACTION: number;
+  isInstalled(): boolean;
+  hasUnauthorizedSeeds(): boolean;
+  getAuthorizedSeeds(): Promise<SolanaSeedVaultSeed[]>;
+  authorizeSeed(): Promise<number>;
+  signMessage(address: string, message: string): Promise<string | null>;
+  signTransaction(address: string, transaction: string): Promise<string | null>;
+}

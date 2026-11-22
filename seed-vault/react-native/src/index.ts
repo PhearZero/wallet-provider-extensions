@@ -124,3 +124,6 @@ export async function deriveKeyMaterial(
     await requireNative().deriveKeyMaterial(address, domain, toBase64(info), length),
   );
 }
+
+/** Solana Mobile Seed Vault (Ed25519 accounts); separate from the Algorand Seed Vault above. */
+export * as solana from "./solana.ts";
