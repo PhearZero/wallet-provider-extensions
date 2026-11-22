@@ -1,7 +1,7 @@
 {
   "name": "@algorandfoundation/react-native-seed-vault",
   "version": "0.0.0",
-  "description": "Expo native module exposing the Seed Vault Service client from seed-vault-sdk to React Native (Android only).",
+  "description": "Expo native module exposing the Algorand Seed Vault Service client from seed-vault-sdk, and the Solana Mobile Seed Vault, to React Native (Android only).",
   "license": "Apache-2.0",
   "author": "Algorand Foundation",
   "repository": {

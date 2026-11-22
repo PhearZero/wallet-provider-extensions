@@ -10,7 +10,9 @@ const DEFAULT_CONSTANTS = {
 };
 function requireNative() {
   if (native === null) {
-    throw new Error("Seed Vault is only available on Android builds that include this module");
+    throw new Error(
+      "Algorand Seed Vault is only available on Android builds that include this module",
+    );
   }
   return native;
 }
@@ -35,7 +37,7 @@ export function getConstants() {
         MAX_BATCH_TRANSACTIONS: native.MAX_BATCH_TRANSACTIONS,
       };
 }
-/** Whether the Seed Vault Service app is installed on the device. */
+/** Whether the Algorand Seed Vault Service app is installed on the device. */
 export function isInstalled() {
   return native?.isInstalled() ?? false;
 }
@@ -53,7 +55,7 @@ export function unbind() {
 export function getAuthorizedSeeds() {
   return requireNative().getAuthorizedSeeds();
 }
-/** Opens the Seed Vault authorization screen; resolves true when the user approved. */
+/** Opens the Algorand Seed Vault authorization screen; resolves true when the user approved. */
 export function authorizeApp() {
   return requireNative().authorizeApp();
 }

@@ -1,5 +1,5 @@
 /** One Falcon-1024 account of a seed. `publicKey` is base64. */
-export interface SeedVaultAccount {
+export interface AlgorandSeedVaultAccount {
   index: number;
   address: string;
   publicKey: string;
@@ -7,12 +7,12 @@ export interface SeedVaultAccount {
   requiresApproval: boolean;
   supportsKeyDerivation: boolean;
 }
-export interface SeedVaultSeed {
+export interface AlgorandSeedVaultSeed {
   id: number;
   name: string;
-  accounts: SeedVaultAccount[];
+  accounts: AlgorandSeedVaultAccount[];
 }
-export interface SeedVaultConstants {
+export interface AlgorandSeedVaultConstants {
   PACKAGE: string;
   DERIVE_DOMAIN_PREFIX: string;
   DERIVE_MIN_LENGTH: number;
@@ -20,12 +20,12 @@ export interface SeedVaultConstants {
   MAX_BATCH_TRANSACTIONS: number;
 }
 /** Native surface; binary values are base64 strings. */
-export interface NativeSeedVaultModule extends SeedVaultConstants {
+export interface NativeAlgorandSeedVaultModule extends AlgorandSeedVaultConstants {
   isInstalled(): boolean;
   isConnected(): boolean;
   bind(): Promise<boolean>;
   unbind(): void;
-  getAuthorizedSeeds(): Promise<SeedVaultSeed[]>;
+  getAuthorizedSeeds(): Promise<AlgorandSeedVaultSeed[]>;
   signBytes(address: string, data: string): Promise<string | null>;
   signTransaction(address: string, transaction: string): Promise<string | null>;
   deriveKeyMaterial(

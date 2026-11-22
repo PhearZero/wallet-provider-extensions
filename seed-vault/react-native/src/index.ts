@@ -1,13 +1,21 @@
 import { base64 } from "@scure/base";
 import { requireOptionalNativeModule } from "expo-modules-core";
-import type { NativeSeedVaultModule, SeedVaultConstants, SeedVaultSeed } from "./types.ts";
+import type {
+  NativeAlgorandSeedVaultModule,
+  AlgorandSeedVaultConstants,
+  AlgorandSeedVaultSeed,
+} from "./types.ts";
 
-export type { SeedVaultAccount, SeedVaultConstants, SeedVaultSeed } from "./types.ts";
+export type {
+  AlgorandSeedVaultAccount,
+  AlgorandSeedVaultConstants,
+  AlgorandSeedVaultSeed,
+} from "./types.ts";
 
-const native: NativeSeedVaultModule | null =
-  requireOptionalNativeModule<NativeSeedVaultModule>("ReactNativeSeedVault");
+const native: NativeAlgorandSeedVaultModule | null =
+  requireOptionalNativeModule<NativeAlgorandSeedVaultModule>("ReactNativeSeedVault");
 
-const DEFAULT_CONSTANTS: SeedVaultConstants = {
+const DEFAULT_CONSTANTS: AlgorandSeedVaultConstants = {
   PACKAGE: "com.michaeltchuang.seedvault.service",
   DERIVE_DOMAIN_PREFIX: "passkey/",
   DERIVE_MIN_LENGTH: 32,
@@ -15,9 +23,11 @@ const DEFAULT_CONSTANTS: SeedVaultConstants = {
   MAX_BATCH_TRANSACTIONS: 16,
 };
 
-function requireNative(): NativeSeedVaultModule {
+function requireNative(): NativeAlgorandSeedVaultModule {
   if (native === null) {
-    throw new Error("Seed Vault is only available on Android builds that include this module");
+    throw new Error(
+      "Algorand Seed Vault is only available on Android builds that include this module",
+    );
   }
   return native;
 }
@@ -35,7 +45,7 @@ export function isSupported(): boolean {
   return native !== null;
 }
 
-export function getConstants(): SeedVaultConstants {
+export function getConstants(): AlgorandSeedVaultConstants {
   return native === null
     ? DEFAULT_CONSTANTS
     : {
@@ -47,7 +57,7 @@ export function getConstants(): SeedVaultConstants {
       };
 }
 
-/** Whether the Seed Vault Service app is installed on the device. */
+/** Whether the Algorand Seed Vault Service app is installed on the device. */
 export function isInstalled(): boolean {
   return native?.isInstalled() ?? false;
 }
@@ -66,11 +76,11 @@ export function unbind(): void {
 }
 
 /** Seeds the user has authorized this app to use. Requires {@link bind}. */
-export function getAuthorizedSeeds(): Promise<SeedVaultSeed[]> {
+export function getAuthorizedSeeds(): Promise<AlgorandSeedVaultSeed[]> {
   return requireNative().getAuthorizedSeeds();
 }
 
-/** Opens the Seed Vault authorization screen; resolves true when the user approved. */
+/** Opens the Algorand Seed Vault authorization screen; resolves true when the user approved. */
 export function authorizeApp(): Promise<boolean> {
   return requireNative().authorizeApp();
 }

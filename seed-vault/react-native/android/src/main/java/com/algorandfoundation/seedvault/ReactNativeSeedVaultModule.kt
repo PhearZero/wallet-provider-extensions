@@ -34,7 +34,7 @@ class ReactNativeSeedVaultModule : Module() {
   private fun launch(intent: Intent, promise: Promise) {
     val activity = appContext.currentActivity
     if (activity == null) {
-      promise.reject("ERR_NO_ACTIVITY", "No foreground activity to open Seed Vault from", null)
+      promise.reject("ERR_NO_ACTIVITY", "No foreground activity to open Algorand Seed Vault from", null)
       return
     }
     // Replace any stale pending request rather than leaking it.
@@ -44,7 +44,7 @@ class ReactNativeSeedVaultModule : Module() {
       activity.startActivityForResult(intent, REQUEST_CODE)
     } catch (t: Throwable) {
       pendingPromise = null
-      promise.reject("ERR_LAUNCH", t.message ?: "Could not open Seed Vault", t)
+      promise.reject("ERR_LAUNCH", t.message ?: "Could not open Algorand Seed Vault", t)
     }
   }
 
